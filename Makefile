@@ -4,16 +4,15 @@ CLANG-FORMAT=clang-format12
 
 LIBS=-lm
 FLAGS=-std=c99 -O2 ${LIBS}
-SRC=src/aplusb.c
 DEPS=
 
 .PHONY: all
 all: hello aplusb
 
-hello: ./src/hello.c ${DEPS} 
+hello: ./src/hello.c ${DEPS}
 	${CC} -o $@ ${FLAGS} ./src/hello.c
 
-aplusb: ./src/aplusb.c ${DEPS} 
+aplusb: ./src/aplusb.c ${DEPS}
 	${CC} -o $@ ${FLAGS} ./src/aplusb.c
 
 .PHONY: format
