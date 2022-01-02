@@ -2,12 +2,13 @@
 
 int main(int argc, char* argv[])
 {
-    Game game = setup();
-    while (!is_over(&game)) {
-        draw(&game);
-        input(&game);
+    Game game = setup_game();
+    while (!is_game_over(&game)) {
+        draw_field(&game);
+        scan_user_key(&game);
         next_step(&game);
     }
-
 	free_game(&game);
+
+	return 0;
 }

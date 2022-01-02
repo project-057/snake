@@ -1,14 +1,15 @@
 typedef struct {
 } Game;
 
-Game setup();
+Game setup_game();
 
-int is_over(Game* game);
+int is_game_over(Game* game);
 
-void draw(Game* game);
+void draw_field(Game* game);
 
-void input(Game* game);
+void scan_user_key(Game* game);
 
+/* Run after void scan_user_key(Game* game) */
 void next_step(Game* game);
 
 void free_game(Game* game);
