@@ -4,7 +4,7 @@ CLANG-FORMAT=clang-format12
 
 LIBS=-lm
 FLAGS=-std=c99 -O2 ${LIBS}
-SRC=src/hello.c
+SRC=src/aplusb.c
 DEPS=
 
 .PHONY: all
