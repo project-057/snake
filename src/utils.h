@@ -10,3 +10,5 @@ void draw(Game* game);
 void input(Game* game);
 
 void next_step(Game* game);
+
+void free_game(Game* game);

@@ -8,4 +8,6 @@ int main(int argc, char* argv[])
         input(&game);
         next_step(&game);
     }
+
+	free_game(&game);
 }
