@@ -1,7 +1,10 @@
 #include "game.h"
+#include "utils.c"
 
 int main(int argc, char* argv[])
 {
+    init_random();
+
     GameState game = setup_game();
 
     while (!is_game_over(&game)) {

@@ -1,10 +1,24 @@
 #include "game.h"
 #include <stdbool.h>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
-const GameState default_state = {  };
+
+int get_random()
+{
+    
+}
 
 GameState setup_game()
 {
+    GameState game;
+
+    printf("Enter field sizes:\nHeight: ");
+    scanf("%d", &game.field_height);
+    printf(" Width: ");
+    scanf("%d", &game.field_width);
+
 
 }
 

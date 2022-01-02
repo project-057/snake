@@ -7,11 +7,6 @@ typedef enum {
     SNAKE_HEAD
 } SpaceState;
 
-// In c-array x - is a number of column, y - is a row number
-typedef struct {
-    int x, y;
-} Coordinate;
-
 typedef struct {
     bool is_game_over;
     size_t field_height;
