@@ -1,9 +1,11 @@
+#include <stdbool.h>
+
 typedef struct {
 } GameState;
 
 GameState setup_game();
 
-int is_game_over(GameState* game);
+bool is_game_over(GameState* game);
 
 void draw_field(GameState* game);
 
