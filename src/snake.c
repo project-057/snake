@@ -1,9 +1,9 @@
 #include "game.h"
-#include "utils.c"
+#include "utils.h"
 
 int main(int argc, char* argv[])
 {
-    init_random();
+    init_rand();
 
     GameState game = setup_game();
 
