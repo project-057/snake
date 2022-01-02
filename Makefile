@@ -3,17 +3,15 @@ RM=rm -f
 CLANG-FORMAT=clang-format12
 
 LIBS=-lm
-FLAGS=-std=c99 -O2 ${LIBS}
-DEPS=
+CFLAGS=-std=c99 -O2 ${LIBS}
+SRC=src/snake.c
+DEPS=src/utils.c
 
 .PHONY: all
-all: hello aplusb
+all: snake
 
-hello: ./src/hello.c ${DEPS}
-	${CC} -o $@ ${FLAGS} ./src/hello.c
-
-aplusb: ./src/aplusb.c ${DEPS}
-	${CC} -o $@ ${FLAGS} ./src/aplusb.c
+snake: ${SRC} ${DEPS}
+	${CC} -o $@ ${SRC} ${DEPS} ${CFLAGS}
 
 .PHONY: format
 format: ${DEPS} ${SRC}
@@ -21,4 +19,4 @@ format: ${DEPS} ${SRC}
 
 .PHONY: clean
 clean:
-	${RM} hello aplusb
+	${RM} snake
