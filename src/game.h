@@ -4,24 +4,23 @@
 #include "utils.h"
 #include <stdbool.h>
 
-typedef enum SpaceState {
-    NONE = 0,
+typedef enum {
+    NONE,
     APPLE,
     SNAKE_TAIL,
     SNAKE_HEAD
 } SpaceState;
 
-typedef struct Snake {
+typedef struct {
     Coordinate head_pos;
-    //  Direction vector {x, y}, where x and y 1 or 0;
+    /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
     Point* snake_points;
     Point* tail_point;
     size_t snake_len;
 } Snake;
 
-typedef struct GameState {
-    bool is_game_over;
+typedef struct {
     size_t field_height;
     size_t field_width;
     SpaceState** field;
