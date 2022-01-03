@@ -1,13 +1,15 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include "game.h"
+
 // In c-array x - is a number of column, y - is a row number
-typedef struct {
+typedef struct Coordinate {
     int x, y;
 } Coordinate;
 
 // Doubly linked list
-typedef struct {
+typedef struct Point {
     Coordinate pos;
     Point* next;
     Point* prev;

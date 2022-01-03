@@ -1,14 +1,17 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include "utils.h"
 #include <stdbool.h>
 
-typedef enum {
+typedef enum SpaceState {
     NONE = 0,
     APPLE,
     SNAKE_TAIL,
     SNAKE_HEAD
 } SpaceState;
 
-typedef struct {
+typedef struct Snake {
     Coordinate head_pos;
     //  Direction vector {x, y}, where x and y 1 or 0;
     Coordinate direction;
@@ -16,7 +19,7 @@ typedef struct {
     size_t snake_len;
 } Snake;
 
-typedef struct {
+typedef struct GameState {
     bool is_game_over;
     size_t field_height;
     size_t field_width;
@@ -36,3 +39,5 @@ void scan_user_key(GameState* game);
 void next_step(GameState* game);
 
 void free_game(GameState* game);
+
+#endif
