@@ -8,20 +8,11 @@ typedef struct {
     int x, y;
 } Coordinate;
 
-/* Doubly linked list */
-typedef struct {
-    Coordinate pos;
-    Point* next;
-    Point* prev;
-} Point;
-
 void init_rand();
 
 Coordinate get_random_coords(GameState* game);
 
 int get_random_integer(int from, int to);
-
-void push_back_point(Snake* snake, const Coordinate* point);
 
 void push_front_point(Snake* snake, const Coordinate* point);
 

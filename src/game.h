@@ -4,26 +4,17 @@
 #include "utils.h"
 #include <stdbool.h>
 
-typedef enum {
-    NONE,
-    APPLE,
-    SNAKE_TAIL,
-    SNAKE_HEAD
-} SpaceState;
-
 typedef struct {
     Coordinate head_pos;
     /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
-    Point* snake_points;
-    Point* tail_point;
+    Coordinate* snake_points;
     size_t snake_len;
 } Snake;
 
 typedef struct {
     size_t field_height;
     size_t field_width;
-    SpaceState** field;
     Snake snake;
 } GameState;
 
