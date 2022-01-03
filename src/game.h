@@ -16,6 +16,7 @@ typedef struct Snake {
     //  Direction vector {x, y}, where x and y 1 or 0;
     Coordinate direction;
     Point* snake_points;
+    Point* tail_point;
     size_t snake_len;
 } Snake;
 
