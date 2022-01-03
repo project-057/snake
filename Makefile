@@ -4,18 +4,18 @@ CLANG-FORMAT=clang-format12
 
 LIBS=-lm
 CFLAGS=-std=c99 -O2 ${LIBS}
-SRC=src/snake.c
-DEPS=src/game.c
+SRC=src/snake.c src/game.c src/utils.c
+DEPS=${SRC} src/utils.h src/utils.c
 
 .PHONY: all
 all: snake
 
-snake: ${SRC} ${DEPS}
-	${CC} -o $@ ${SRC} ${DEPS} ${CFLAGS}
+snake: ${DEPS}
+	${CC} -o $@ ${SRC} ${CFLAGS}
 
 .PHONY: format
-format: ${DEPS} ${SRC}
-	${CLANG-FORMAT} -i ${DEPS} ${SRC}
+format: ${DEPS}
+	${CLANG-FORMAT} -i ${DEPS}
 
 .PHONY: clean
 clean:
