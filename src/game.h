@@ -1,8 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "utils.h"
 #include <stdbool.h>
+
+typedef struct {
+	int x, y;
+} Coordinate;
 
 typedef struct {
     Coordinate head_pos;
