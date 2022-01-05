@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include "utils.h"
 #include <stdbool.h>
@@ -31,4 +30,6 @@ void next_step(GameState *game);
 
 void free_game(GameState *game);
 
-#endif
+void remove_back_point(Snake *snake);
+
+void push_front_point(Snake *snake, const Coordinate *point);

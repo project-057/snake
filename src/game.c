@@ -11,14 +11,14 @@ GameState setup_game() {
     /* getting field sizes from user */
     puts("Enter field sizes:\nHeight: ");
     scanf("%u", &game.field_height);
-    puts(" Width: ");
+    puts("Width: ");
     scanf("%u", &game.field_width);
 
     /* Creating snake at random position */
     game.snake.body = (Coordinate *) calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
-    game.snake.head_pos = get_random_coords(&game);
+    game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
     push_front_point(&game.snake, &game.snake.head_pos);
 
     /* Random direction */
@@ -42,4 +42,10 @@ void next_step(GameState *game) {
 }
 
 void free_game(GameState *game) {
+}
+
+void remove_back_point(Snake *snake) {
+}
+
+void push_front_point(Snake *snake, const Coordinate *point) {
 }
