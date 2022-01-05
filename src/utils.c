@@ -8,18 +8,12 @@ void init_rand() {
     srand(time(NULL));
 }
 
-Coordinate get_random_coords(GameState *game) {
+Coordinate get_random_coords(int width, int height) {
     Coordinate out = {
-            .x = get_random_integer(0, game->field_width),
-            .y = get_random_integer(0, game->field_height)
+            .x = get_random_integer(0, width),
+            .y = get_random_integer(0, height)
     };
     return out;
-}
-
-void push_front_point(Snake *snake, const Coordinate *point) {
-}
-
-void remove_back_point(Snake *snake) {
 }
 
 int get_random_integer(int from, int to) {
