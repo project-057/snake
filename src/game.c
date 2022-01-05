@@ -11,7 +11,7 @@ GameState setup_game() {
     /* getting field sizes from user */
     puts("Enter field sizes:\nHeight: ");
     scanf("%u", &game.field_height);
-    puts(" Width: ");
+    puts("Width: ");
     scanf("%u", &game.field_width);
 
     /* Creating snake at random position */
