@@ -29,6 +29,7 @@ GameState setup_game() {
 }
 
 bool is_game_over(GameState *game) {
+	return true;
 }
 
 void draw_field(GameState *game) {
