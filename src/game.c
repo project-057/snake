@@ -29,22 +29,45 @@ GameState setup_game() {
 }
 
 bool is_game_over(GameState *game) {
+    return false;
 }
 
 void draw_field(GameState *game) {
 }
 
+#ifdef _WIN32
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define ARROW_PRESSED 0
+#else
+#define KEY_LEFT 68 
+#define KEY_RIGHT 67
+#define KEY_UP 65
+#define KEY_DOWN 66
+#define ARROW_PRESSED 27 
+#define ARROW_PRESSED_2 91
+#endif
+
+
 
 void scan_user_key(GameState *game) {
     int input_key = getch();
 
     /* When user press arrow key getch() returns 0 */
-    if (input_key == ARROW_PRESSED) input_key = getch();
+    if (input_key == ARROW_PRESSED) {
+        input_key = getch();
+#ifndef _WIN32
+        if (input_key == ARROW_PRESSED_2) 
+            input_key = getch();
+#endif
+    } 
+
+    ///* Debug prints */
+    //static int i = 0;
+    //printf("Key pressed: %d in iteration: %d\n", input_key, i);
+    //i++;
 
     const Coordinate right  = { 1,  0};
     const Coordinate left   = {-1,  0};
@@ -58,6 +81,7 @@ void scan_user_key(GameState *game) {
 
     /* Debug prints */
     printf("Direction updated: x = %d, y = %d\n", game->snake.direction.x, game->snake.direction.y);
+    
 }
 
 /* Run after void scan_user_key(GameState* game) */
