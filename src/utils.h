@@ -1,3 +1,5 @@
+#pragma once
+
 /* In c-array x - is a number of column, y - is a row number */
 typedef struct {
     int x, y;
