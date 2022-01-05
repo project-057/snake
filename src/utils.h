@@ -2,17 +2,10 @@
 
 #include <stdio.h>
 
-#ifdef __linux__
+#ifndef _WIN32
 #include <termios.h>
 #include <unistd.h>
-#endif
-
-#ifdef __FreeBSD__
-#include <termios.h>
-#include <unistd.h>
-#endif
-
-#ifdef _WIN32
+#else
 #include <conio.h>
 #endif
 
