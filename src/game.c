@@ -5,14 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Coordinate get_random_coords(GameState *game) {
-	Coordinate out = {
-		.x = get_random_integer(0, game->field_width),
-		.y = get_random_integer(0, game->field_height)
-	};
-	return out;
- }
-
 GameState setup_game() {
     GameState game;
 
@@ -26,7 +18,7 @@ GameState setup_game() {
     game.snake.body = (Coordinate *) calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
-    game.snake.head_pos = get_random_coords(&game);
+    game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
     push_front_point(&game.snake, &game.snake.head_pos);
 
     /* Random direction */
@@ -50,4 +42,10 @@ void next_step(GameState *game) {
 }
 
 void free_game(GameState *game) {
+}
+
+void remove_back_point(Snake *snake) {
+}
+
+void push_front_point(Snake *snake, const Coordinate *point) {
 }

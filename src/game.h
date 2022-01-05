@@ -1,11 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "utils.h"
 #include <stdbool.h>
-
-typedef struct {
-	int x, y;
-} Coordinate;
 
 typedef struct {
     Coordinate head_pos;
@@ -33,5 +30,9 @@ void scan_user_key(GameState *game);
 void next_step(GameState *game);
 
 void free_game(GameState *game);
+
+void remove_back_point(Snake *snake);
+
+void push_front_point(Snake *snake, const Coordinate *point);
 
 #endif
