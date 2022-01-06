@@ -60,12 +60,12 @@ void draw_field(GameState* game)
             }
             /* if body_part == length then we haven't drawn part of snake's body */
             if (body_part == 0)
-                printf("%c", HEAD);
+                putc(HEAD, stdout);
             else if (body_part < length)
-                printf("%c", BODY);
+                putc(BODY, stdout);
             else {
                 // TODO: draw a melon
-                printf("%c", CELL);
+                putc(CELL, stdout);
             }
         }
         printf("\n");
