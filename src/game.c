@@ -105,15 +105,15 @@ void next_step(GameState* game)
         push_front_point(&game->snake, &head);
 
         /* Updating melon position */
-        bool** free_coordinates = (bool**)malloc(game->field_height*sizeof(bool*));
-        bool*  data = (bool*)malloc(game->field_width*game->field_height*sizeof(bool));
+        bool** free_coordinates = (bool**)malloc(game->field_height * sizeof(bool*));
+        bool* data = (bool*)malloc(game->field_width * game->field_height * sizeof(bool));
 
         for (int i = 0; i < game->field_height * game->field_width; ++i) {
             data[i] = true;
         }
 
         for (int i = 0; i < game->field_height; ++i) {
-            free_coordinates[i] = data + i*game->field_width;
+            free_coordinates[i] = data + i * game->field_width;
         }
 
         /* Removing all snakes points */
@@ -121,7 +121,7 @@ void next_step(GameState* game)
             free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
         }
 
-        Coordinate* stack_coords = (Coordinate*)malloc(game->field_height*game->field_width*sizeof(Coordinate));
+        Coordinate* stack_coords = (Coordinate*)malloc(game->field_height * game->field_width * sizeof(Coordinate));
         int stack_coords_size = 0;
 
         for (int i = 0; i < game->field_height; ++i) {
