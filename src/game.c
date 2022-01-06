@@ -31,12 +31,19 @@ GameState setup_game()
 
 bool is_game_over(GameState* game)
 {
+    int length = game->snake.snake_len;
+    /* The snake can't crash if length is less than 4 */
+    for (int i = 4; i < length; i++) {
+        if (game->snake.head_pos.x == game->snake.body[i].x && game->snake.head_pos.y == game->snake.body[i].y)
+            return true;
+    }
     return false;
 }
 
 void draw_field(GameState* game)
 {
 }
+
 
 #ifdef _WIN32
 #define KEY_LEFT 75
@@ -79,6 +86,10 @@ void scan_user_key(GameState* game)
         game->snake.direction = down;
     if (input_key == KEY_UP || input_key == 'k')
         game->snake.direction = up;
+}
+
+void scan_user_key(GameState* game)
+{
 }
 
 /* Run after void scan_user_key(GameState* game) */

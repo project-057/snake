@@ -17,6 +17,10 @@ snake: ${DEPS}
 format: ${DEPS}
 	${CLANG-FORMAT} -i ${DEPS}
 
+.PHONY: isformatted
+isformatted: ${DEPS}
+	${CLANG-FORMAT} -dry-run -Werror ${DEPS}
+
 .PHONY: clean
 clean:
 	${RM} snake

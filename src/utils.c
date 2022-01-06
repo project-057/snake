@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 #ifndef _WIN32
 
 int getch(void)
