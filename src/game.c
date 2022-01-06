@@ -30,9 +30,10 @@ GameState setup_game() {
 
 bool is_game_over(GameState *game) {
 	int length = game->snake.snake_len;
-	if (length > 1 && 
-		game->snake.head_pos.x == game->snake.body[length-1].x &&
-		game->snake.head_pos.y == game->snake.body[length-1].y) return true;
+	for (int i = 4; i < length; i++) {
+		if (game->snake.head_pos.x == game->snake.body[i].x &&
+			game->snake.head_pos.y == game->snake.body[i].y) return true; 
+	}
 	return false;
 }
 
