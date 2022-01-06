@@ -44,7 +44,6 @@ void draw_field(GameState* game)
 {
 }
 
-
 #ifdef _WIN32
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
