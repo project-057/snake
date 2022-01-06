@@ -19,7 +19,7 @@ GameState setup_game() {
     game.snake.snake_len = 0;
 
     game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
-    push_front_point(&game.snake, &game.snake.head_pos);
+    push_front_point(&game.snake, game.snake.head_pos);
 
     /* Random direction */
     game.snake.direction.x = rand() % 2;
@@ -46,7 +46,15 @@ void free_game(GameState *game) {
 }
 
 void remove_back_point(Snake *snake) {
+    snake->snake_len--;
 }
 
-void push_front_point(Snake *snake, const Coordinate *point) {
+void push_front_point(Snake *snake, Coordinate point) {
+    remove_back_point(snake);
+
+    for (int i = 0; snake->snake_len-1; ++i){ 
+        snake->body[i+1] = snake->body[i];
+    }
+    
+    snake->body[0] = point;
 }

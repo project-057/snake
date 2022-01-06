@@ -32,4 +32,4 @@ void free_game(GameState *game);
 
 void remove_back_point(Snake *snake);
 
-void push_front_point(Snake *snake, const Coordinate *point);
+void push_front_point(Snake *snake, Coordinate point);
