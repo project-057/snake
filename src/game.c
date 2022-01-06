@@ -52,9 +52,9 @@ void remove_back_point(Snake *snake) {
 void push_front_point(Snake *snake, Coordinate point) {
     remove_back_point(snake);
 
-    for (int i = 0; snake->snake_len-1; ++i){ 
+    for (unsigned i = 0; i < snake->snake_len-1; ++i){ 
         snake->body[i+1] = snake->body[i];
     }
-    
+
     snake->body[0] = point;
 }
