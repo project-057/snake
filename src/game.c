@@ -42,6 +42,34 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
+    enum field_components {
+        CELL = '.',
+        HEAD = '*',
+        BODY = '*',
+        MELON = '0'
+    };
+    int length = game->snake.snake_len;
+
+    for (int i = 0; i < game->field_height; i++) {
+        for (int j = 0; j < game->field_width; j++) {
+            int body_part = 0;
+            for (; body_part < length; body_part++) {
+                if (game->snake.body[body_part].y == i && game->snake.body[body_part].x == j) {
+                    break;
+                }
+            }
+            /* if body_part == length then we haven't drawn part of snake's body */
+            if (body_part == 0)
+                putc(HEAD, stdout);
+            else if (body_part < length)
+                putc(BODY, stdout);
+            else {
+                // TODO: draw a melon
+                putc(CELL, stdout);
+            }
+        }
+        printf("\n");
+    }
 }
 
 #ifdef _WIN32
@@ -90,10 +118,57 @@ void scan_user_key(GameState* game)
 /* Run after void scan_user_key(GameState* game) */
 void next_step(GameState* game)
 {
+    /* Moving */
+    Coordinate head = game->snake.body[0];
+    head.x = (head.x + game->snake.direction.x) % game->field_width;
+    head.y = (head.y + game->snake.direction.y) % game->field_height;
+    push_front_point(&game->snake, &head);
+
+    /* Melon check */
+    if (head.x != game->melon.x || head.y != game->melon.y) {
+        remove_back_point(&game->snake);
+        return;
+    }
+
+    /* Updating melon position */
+    bool** free_coordinates = (bool**)malloc(game->field_height * sizeof(bool*));
+    bool* data = (bool*)malloc(game->field_width * game->field_height * sizeof(bool));
+
+    for (int i = 0; i < game->field_height * game->field_width; ++i) {
+        data[i] = true;
+    }
+
+    for (int i = 0; i < game->field_height; ++i) {
+        free_coordinates[i] = data + i * game->field_width;
+    }
+
+    /* Removing all snakes points */
+    for (int i = 0; i < game->snake.snake_len; ++i) {
+        free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
+    }
+
+    Coordinate* stack_coords = (Coordinate*)malloc(game->field_height * game->field_width * sizeof(Coordinate));
+    int stack_coords_size = 0;
+
+    for (int i = 0; i < game->field_height; ++i) {
+        for (int j = 0; j < game->field_width; ++j) {
+            if (free_coordinates[i][j]) {
+                stack_coords[stack_coords_size++] = (Coordinate) { .x = j, .y = i };
+            }
+        }
+    }
+
+    game->melon = stack_coords[get_random_integer(0, stack_coords_size)];
+
+    /* free */
+    free(free_coordinates);
+    free(data);
+    free(stack_coords);
 }
 
 void free_game(GameState* game)
 {
+    free(game->snake.body);
 }
 
 void remove_back_point(Snake* snake)
