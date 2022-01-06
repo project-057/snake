@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-GameState setup_game() {
+GameState setup_game()
+{
     GameState game;
 
     /* getting field sizes from user */
@@ -15,7 +16,7 @@ GameState setup_game() {
     scanf("%u", &game.field_width);
 
     /* Creating snake at random position */
-    game.snake.body = (Coordinate *) calloc(game.field_height * game.field_width, sizeof(Coordinate));
+    game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
     game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
@@ -28,25 +29,38 @@ GameState setup_game() {
     return game;
 }
 
-bool is_game_over(GameState *game) {
-	return true;
+bool is_game_over(GameState* game)
+{
+    int length = game->snake.snake_len;
+    /* The snake can't crash if length is less than 4 */
+    for (int i = 4; i < length; i++) {
+        if (game->snake.head_pos.x == game->snake.body[i].x && game->snake.head_pos.y == game->snake.body[i].y)
+            return true;
+    }
+    return false;
 }
 
-void draw_field(GameState *game) {
+void draw_field(GameState* game)
+{
 }
 
-void scan_user_key(GameState *game) {
+void scan_user_key(GameState* game)
+{
 }
 
 /* Run after void scan_user_key(GameState* game) */
-void next_step(GameState *game) {
+void next_step(GameState* game)
+{
 }
 
-void free_game(GameState *game) {
+void free_game(GameState* game)
+{
 }
 
-void remove_back_point(Snake *snake) {
+void remove_back_point(Snake* snake)
+{
 }
 
-void push_front_point(Snake *snake, const Coordinate *point) {
+void push_front_point(Snake* snake, const Coordinate* point)
+{
 }
