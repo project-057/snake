@@ -88,10 +88,6 @@ void scan_user_key(GameState* game)
         game->snake.direction = up;
 }
 
-void scan_user_key(GameState* game)
-{
-}
-
 /* Run after void scan_user_key(GameState* game) */
 void next_step(GameState* game)
 {
