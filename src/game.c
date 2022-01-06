@@ -42,6 +42,34 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
+    enum field_components {
+        CELL = '.',
+        HEAD = '*',
+        BODY = '*',
+        MELON = '0'
+    };
+    int length = game->snake.snake_len;
+
+    for (int i = 0; i < game->field_height; i++) {
+        for (int j = 0; j < game->field_width; j++) {
+            int body_part = 0;
+            for (; body_part < length; body_part++) {
+                if (game->snake.body[body_part].y == i && game->snake.body[body_part].x == j) {
+                    break;
+                }
+            }
+            /* if body_part == length then we haven't drawn part of snake's body */
+            if (body_part == 0)
+                putc(HEAD, stdout);
+            else if (body_part < length)
+                putc(BODY, stdout);
+            else {
+                // TODO: draw a melon
+                putc(CELL, stdout);
+            }
+        }
+        printf("\n");
+    }
 }
 
 #ifdef _WIN32
