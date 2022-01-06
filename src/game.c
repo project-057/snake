@@ -50,7 +50,7 @@ void draw_field(GameState* game)
 #define KEY_UP 65
 #define KEY_DOWN 66
 #define ARROW_PRESSED 27
-#define ARROW_PRESSED_2 91
+#define TERMIOS_ARROW_KEY_PRESSED 91
 #endif
 
 void scan_user_key(GameState* game)
@@ -61,7 +61,7 @@ void scan_user_key(GameState* game)
     if (input_key == ARROW_PRESSED) {
         input_key = getch();
 #ifndef _WIN32
-        if (input_key == ARROW_PRESSED_2)
+        if (input_key == TERMIOS_ARROW_KEY_PRESSED)
             input_key = getch();
 #endif
     }
