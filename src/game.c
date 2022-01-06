@@ -122,6 +122,7 @@ void next_step(GameState* game)
 
 void free_game(GameState* game)
 {
+    free(game->snake.body);
 }
 
 void remove_back_point(Snake* snake)
