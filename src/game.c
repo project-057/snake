@@ -130,7 +130,7 @@ void next_step(GameState* game)
     for (int i = 0; i < game->field_height; ++i) {
         for (int j = 0; j < game->field_width; ++j) {
             if (free_coordinates[i][j]) {
-                stack_coords[stack_coords_size++] = (Coordinate){ .x = j, .y = i };
+                stack_coords[stack_coords_size++] = (Coordinate) { .x = j, .y = i };
             }
         }
     }
