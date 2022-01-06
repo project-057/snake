@@ -62,11 +62,6 @@ void scan_user_key(GameState *game) {
 #endif
     }
 
-    ///* Debug prints */
-    //static int i = 0;
-    //printf("Key pressed: %d in iteration: %d\n", input_key, i);
-    //i++;
-
     const Coordinate right = {1, 0};
     const Coordinate left = {-1, 0};
     const Coordinate down = {0, 1};
@@ -76,9 +71,6 @@ void scan_user_key(GameState *game) {
     if (input_key == KEY_LEFT || input_key == 'h') game->snake.direction = left;
     if (input_key == KEY_DOWN || input_key == 'j') game->snake.direction = down;
     if (input_key == KEY_UP || input_key == 'k') game->snake.direction = up;
-
-    /* Debug prints */
-    printf("Direction updated: x = %d, y = %d\n", game->snake.direction.x, game->snake.direction.y);
 
 }
 
