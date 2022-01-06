@@ -1,10 +1,9 @@
 #include "utils.h"
-#include "game.h"
 
 #include <stdlib.h>
 #include <time.h>
 
-#ifdef _TERMIOS_H
+#ifndef _WIN32 
 int getch(void) {
     struct termios oldattr, newattr;
     int ch;
