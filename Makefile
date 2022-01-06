@@ -5,7 +5,7 @@ CLANG-FORMAT=clang-format12
 LIBS=-lm
 CFLAGS=-std=c99 -O2 -Wall -Werror ${LIBS}
 SRC=src/snake.c src/game.c src/utils.c
-DEPS=${SRC} src/utils.h src/utils.c
+DEPS=${SRC} src/utils.h src/game.h
 
 .PHONY: all
 all: snake
