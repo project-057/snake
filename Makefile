@@ -3,7 +3,7 @@ RM=rm -f
 CLANG-FORMAT=clang-format12
 
 LIBS=-lm
-CFLAGS=-std=c99 -O2 ${LIBS}
+CFLAGS=-std=c99 -O2 -Wall -Werror ${LIBS}
 SRC=src/snake.c src/game.c src/utils.c
 DEPS=${SRC} src/utils.h src/game.h
 
@@ -16,6 +16,10 @@ snake: ${DEPS}
 .PHONY: format
 format: ${DEPS}
 	${CLANG-FORMAT} -i ${DEPS}
+
+.PHONY: isformatted
+isformatted: ${DEPS}
+	${CLANG-FORMAT} -dry-run -Werror ${DEPS}
 
 .PHONY: clean
 clean:

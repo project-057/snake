@@ -1,7 +1,8 @@
 #include "game.h"
 #include "utils.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
     init_rand();
 
     GameState game = setup_game();
