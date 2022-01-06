@@ -1,9 +1,9 @@
-CC=gcc
+CC=clang
 RM=rm -f
 CLANG-FORMAT=clang-format12
 
 LIBS=-lm
-CFLAGS=-std=c99 -O2 -Wall -Werror ${LIBS}
+CFLAGS=-Wall -Wextra -Werror -std=c99 -O2 ${LIBS}
 SRC=src/snake.c src/game.c src/utils.c
 DEPS=${SRC} src/utils.h src/utils.c
 
