@@ -15,6 +15,7 @@ typedef struct {
     unsigned field_height;
     unsigned field_width;
     Snake snake;
+    Coordinate melon;
 } GameState;
 
 GameState setup_game();
