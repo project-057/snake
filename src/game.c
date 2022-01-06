@@ -39,7 +39,7 @@ void draw_field(GameState* game)
     enum field_components { CELL = '.',
         HEAD = '*',
         BODY = '*',
-        MELON = '0' } c;
+        MELON = '0' };
     int width = game->field_width,
         height = game->field_height,
         length = game->snake.snake_len;
