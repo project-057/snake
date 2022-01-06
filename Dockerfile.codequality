@@ -5,3 +5,4 @@ COPY . /srv/snake
 WORKDIR /srv/snake
 
 RUN make CLANG-FORMAT=clang-format isformatted
+RUN make CLANG-TIDY=clang-tidy istidy

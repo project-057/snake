@@ -1,9 +1,10 @@
 CC=gcc
 RM=rm -f
 CLANG-FORMAT=clang-format12
+CLANG-TIDY=clang-tidy12
 
 LIBS=-lm
-CFLAGS=-Wall -Wextra -Werror -std=c99 -O2 ${LIBS}
+CFLAGS=-Wall -Werror -std=c99 -O2 ${LIBS}
 SRC=src/snake.c src/game.c src/utils.c
 DEPS=${SRC} src/utils.h src/game.h
 
@@ -21,6 +22,10 @@ format: ${DEPS}
 isformatted: ${DEPS}
 	${CLANG-FORMAT} -dry-run -Werror ${DEPS}
 
+.PHONY: istidy
+istidy: ${DEPS}
+	${CLANG-TIDY} ${DEPS} -- ${CFLAGS}
+	
 .PHONY: clean
 clean:
 	${RM} snake
