@@ -3,14 +3,18 @@
 #include <stdio.h>
 
 #ifndef _WIN32
+
 #include <termios.h>
 #include <unistd.h>
+
 #else
 #include <conio.h>
 #endif
 
-#ifdef _TERMIOS_H
+#ifndef _WIN32
+
 int getch(void);
+
 #endif
 
 /* In c-array x - is a number of column, y - is a row number */
