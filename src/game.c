@@ -71,7 +71,6 @@ void scan_user_key(GameState *game) {
     if (input_key == KEY_LEFT || input_key == 'h') game->snake.direction = left;
     if (input_key == KEY_DOWN || input_key == 'j') game->snake.direction = down;
     if (input_key == KEY_UP || input_key == 'k') game->snake.direction = up;
-
 }
 
 /* Run after void scan_user_key(GameState* game) */
