@@ -31,7 +31,6 @@ GameState setup_game()
 
 bool is_game_over(GameState* game)
 {
-    return true;
     int length = game->snake.snake_len;
     /* The snake can't crash if length is less than 4 */
     for (int i = 4; i < length; i++) {
@@ -43,32 +42,33 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
-    enum field_components { CELL = '.',
+    enum field_components {
+        CELL = '.',
         HEAD = '*',
         BODY = '*',
-        MELON = '0' };
-    int width = game->field_width,
-        height = game->field_height,
-        length = game->snake.snake_len;
+        MELON = '0'
+    };
+    int length = game->snake.snake_len;
 
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int k = 0;
-            for (; k < length; k++) {
-                if (game->snake.body[k].y == i && game->snake.body[k].x == j) {
-                    if (k == 0)
-                        printf("%c", HEAD);
-                    else
-                        printf("%c", BODY);
+    for (int i = 0; i < game->field_height; i++) {
+        for (int j = 0; j < game->field_width; j++) {
+            int body_part = 0;
+            for (; body_part < length; body_part++) {
+                if (game->snake.body[body_part].y == i && game->snake.body[body_part].x == j) {
                     break;
                 }
             }
-            /* if k == length then we haven't drawn part of snake's body */
-            if (k == length) {
+            /* if body_part == length then we haven't drawn part of snake's body */
+            if (body_part == 0)
+                printf("%c", HEAD);
+            else if (body_part < length)
+                printf("%c", BODY);
+            else {
                 // TODO: draw a melon
                 printf("%c", CELL);
             }
         }
+        printf("\n");
     }
 }
 
