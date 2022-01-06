@@ -29,7 +29,11 @@ GameState setup_game() {
 }
 
 bool is_game_over(GameState *game) {
-	return true;
+	int length = game->snake.snake_len;
+	if (length > 1 && 
+		game->snake.head_pos.x == game->snake.body[length-1].x &&
+		game->snake.head_pos.y == game->snake.body[length-1].y) return true;
+	return false;
 }
 
 void draw_field(GameState *game) {
