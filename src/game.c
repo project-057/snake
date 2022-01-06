@@ -95,17 +95,12 @@ void next_step(GameState* game)
     head.x = (head.x + game->snake.direction.x) % game->field_width;
     head.y = (head.y + game->snake.direction.y) % game->field_height;
     push_front_point(&game->snake, &head);
-    remove_back_point(&game->snake);
 
     /* Melon check */
     if (head.x != game->melon.x || head.y != game->melon.y) {
+        remove_back_point(&game->snake);
         return;
     }
-
-    /* Snake growth */
-    head.x = (head.x + game->snake.direction.x) % game->field_width;
-    head.y = (head.y + game->snake.direction.y) % game->field_height;
-    push_front_point(&game->snake, &head);
 
     /* Updating melon position */
     bool** free_coordinates = (bool**)malloc(game->field_height * sizeof(bool*));
