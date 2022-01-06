@@ -134,7 +134,6 @@ void next_step(GameState* game)
     bool** free_coordinates = malloc(game->field_height * sizeof(bool*));
     bool* data = malloc(game->field_width * game->field_height * sizeof(bool));
 
-
     for (int i = 0; i < game->field_height; ++i) {
         free_coordinates[i] = data + i * game->field_width;
     }
