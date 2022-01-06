@@ -1,4 +1,4 @@
-name: Docker Image CI for codequality
+name: Codequality
 
 on:
   push:
