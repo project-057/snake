@@ -179,7 +179,7 @@ void remove_back_point(Snake* snake)
 void push_front_point(Snake* snake, Coordinate point) 
 {
 
-    if (snake->snake_len > 0){
+    if (snake->snake_len > 0) {
         for (unsigned i = snake->snake_len; i >= 1; --i) { 
             snake->body[i - 1] = snake->body[i];
         }
