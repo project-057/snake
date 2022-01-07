@@ -3,7 +3,8 @@
 #include "utils.h"
 #include <stdbool.h>
 
-typedef struct {
+typedef struct
+{
     Coordinate head_pos;
     /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
@@ -11,7 +12,8 @@ typedef struct {
     unsigned snake_len;
 } Snake;
 
-typedef struct {
+typedef struct
+{
     unsigned field_height;
     unsigned field_width;
     Snake snake;

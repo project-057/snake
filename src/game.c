@@ -16,7 +16,8 @@ GameState setup_game()
     scanf("%u", &game.field_width);
 
     /* Creating snake at random position */
-    game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width, sizeof(Coordinate));
+    game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width,
+        sizeof(Coordinate));
     game.snake.snake_len = 0;
 
     game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
@@ -34,7 +35,8 @@ bool is_game_over(GameState* game)
     int length = game->snake.snake_len;
     /* The snake can't crash if length is less than 4 */
     for (int i = 4; i < length; i++) {
-        if (game->snake.head_pos.x == game->snake.body[i].x && game->snake.head_pos.y == game->snake.body[i].y)
+        if (game->snake.head_pos.x == game->snake.body[i].x
+            && game->snake.head_pos.y == game->snake.body[i].y)
             return true;
     }
     return false;
@@ -42,12 +44,10 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
-    enum field_components {
-        CELL = '.',
+    enum field_components { CELL = '.',
         HEAD = '*',
         BODY = '*',
-        MELON = '0'
-    };
+        MELON = '0' };
     int length = game->snake.snake_len;
 
     for (int i = 0; i < game->field_height; i++) {
@@ -147,7 +147,8 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate* stack_coords = (Coordinate*)malloc(game->field_height * game->field_width * sizeof(Coordinate));
+    Coordinate* stack_coords = (Coordinate*)malloc(game->field_height * game->field_width
+        * sizeof(Coordinate));
     int stack_coords_size = 0;
 
     for (int i = 0; i < game->field_height; ++i) {
@@ -171,20 +172,20 @@ void free_game(GameState* game)
     free(game->snake.body);
 }
 
-void remove_back_point(Snake* snake) 
+void remove_back_point(Snake* snake)
 {
     snake->snake_len--;
 }
 
-void push_front_point(Snake* snake, Coordinate point) 
+void push_front_point(Snake* snake, Coordinate point)
 {
     snake->snake_len++;
-    
-    if (snake->snake_len > 1) {
-        for (unsigned i = snake->snake_len; i >= 1; --i) { 
-            snake->body[i] = snake->body[i - 1];
-        }
+
+    for (unsigned i = snake->snake_len - 1; i >= 1; --i) {
+        snake->body[i].x = snake->body[i - 1].x;
+        snake->body[i].y = snake->body[i - 1].y;
     }
-    
-    snake->body[0] = point;
+
+    snake->body[0].x = point.x;
+    snake->body[0].y = point.y;
 }
