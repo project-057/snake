@@ -57,11 +57,12 @@ void draw_field(GameState* game)
     }
 
     for (int i = 0; i < game->field_height * game->field_width + game->field_height + 1; i++) {
-        field_data[i] = (!(i % game->field_width)) ? '\n' : CELL;
+        field_data[i] = !(i % game->field_width) ? '\n' : CELL;
     }
 
     for (int i = 0; i < length; i++) {
-        field[game->snake.body[i].y][game->snake.body[i].x] = (i == 0) ? HEAD : BODY;
+        Coordinate body = game->snake.body[i];
+        field[body.y][body.x] = i == 0 ? HEAD : BODY;
     }
 
     field[game->melon.y][game->melon.x] = MELON;
