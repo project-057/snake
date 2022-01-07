@@ -44,7 +44,7 @@ void draw_field(GameState* game)
 {
     enum field_components {
         CELL = '.',
-        HEAD = '*',
+        HEAD = '+',
         BODY = '*',
         MELON = '0'
     };
