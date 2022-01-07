@@ -171,20 +171,20 @@ void free_game(GameState* game)
     free(game->snake.body);
 }
 
-void remove_back_point(Snake* snake) 
+void remove_back_point(Snake* snake)
 {
     snake->snake_len--;
 }
 
-void push_front_point(Snake* snake, Coordinate point) 
+void push_front_point(Snake* snake, Coordinate point)
 {
     snake->snake_len++;
-    
+
     if (snake->snake_len > 1) {
-        for (unsigned i = snake->snake_len; i >= 1; --i) { 
+        for (unsigned i = snake->snake_len; i >= 1; --i) {
             snake->body[i] = snake->body[i - 1];
         }
     }
-    
+
     snake->body[0] = point;
 }
