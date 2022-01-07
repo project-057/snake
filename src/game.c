@@ -19,8 +19,7 @@ GameState setup_game()
     game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
-    game.snake.head_pos = get_random_coords(game.field_width, game.field_height);
-    push_front_point(&game.snake, &game.snake.head_pos);
+    push_front_point(&game.snake, get_random_coords(game.field_width, game.field_height));
 
     /* Random direction */
     game.snake.direction.x = rand() % 2;
@@ -34,7 +33,7 @@ bool is_game_over(GameState* game)
     int length = game->snake.snake_len;
     /* The snake can't crash if length is less than 4 */
     for (int i = 4; i < length; i++) {
-        if (game->snake.head_pos.x == game->snake.body[i].x && game->snake.head_pos.y == game->snake.body[i].y)
+        if (game->snake.body[0].x == game->snake.body[i].x && game->snake.body[0].y == game->snake.body[i].y)
             return true;
     }
     return false;
@@ -121,7 +120,7 @@ void next_step(GameState* game)
     Coordinate head = game->snake.body[0];
     head.x = (head.x + game->snake.direction.x) % game->field_width;
     head.y = (head.y + game->snake.direction.y) % game->field_height;
-    push_front_point(&game->snake, &head);
+    push_front_point(&game->snake, head);
 
     /* Melon check */
     if (head.x != game->melon.x || head.y != game->melon.y) {
@@ -176,6 +175,6 @@ void remove_back_point(Snake* snake)
 {
 }
 
-void push_front_point(Snake* snake, const Coordinate* point)
+void push_front_point(Snake* snake, Coordinate point)
 {
 }

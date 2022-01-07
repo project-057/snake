@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 typedef struct {
-    Coordinate head_pos;
     /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
     Coordinate* body;
@@ -33,4 +32,4 @@ void free_game(GameState* game);
 
 void remove_back_point(Snake* snake);
 
-void push_front_point(Snake* snake, const Coordinate* point);
+void push_front_point(Snake* snake, Coordinate point);
