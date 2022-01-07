@@ -147,7 +147,7 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate* stack_coords = malloc(game->field_height * game->field_width * sizeof(Coordinate));
+    Coordinate* stack_coords = (Coordinate*)malloc(game->field_height * game->field_width * sizeof(Coordinate));
     int stack_coords_size = 0;
 
     for (int i = 0; i < game->field_height; ++i) {
