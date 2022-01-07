@@ -3,9 +3,7 @@
 #include "utils.h"
 #include <stdbool.h>
 
-typedef struct
-{
-    Coordinate head_pos;
+typedef struct {
     /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
     Coordinate* body;
