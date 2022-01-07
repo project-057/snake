@@ -147,7 +147,13 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate* stack_coords = (Coordinate*)calloc(game->field_height * game->field_width, sizeof(Coordinate));
+    Coordinate* stack_coords = (Coordinate*)calloc(game->field_height * game->field_width , sizeof(Coordinate));
+    if(!stack_coords) {
+        free(free_coordinates);
+        free(data);
+        return;
+    }
+
     int stack_coords_size = 0;
 
     for (int i = 0; i < game->field_height; ++i) {
