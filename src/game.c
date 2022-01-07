@@ -67,6 +67,9 @@ void draw_field(GameState* game)
     field[game->melon.y][game->melon.x] = MELON;
 
     puts(field_data);
+
+    free(field_data);
+    free(field);
 }
 
 #ifdef _WIN32
