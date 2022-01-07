@@ -44,8 +44,8 @@ void draw_field(GameState* game)
 {
     enum field_components {
         CELL = '.',
-        HEAD = '+',
-        BODY = '*',
+        HEAD = '*',
+        BODY = '+',
         MELON = '0'
     };
     int length = game->snake.snake_len;
@@ -64,7 +64,7 @@ void draw_field(GameState* game)
             else if (body_part < length)
                 putc(BODY, stdout);
             else {
-                (game->melon.y == i && game->melon.x == j) ? putc(MELON, stdout) : putc(CELL, stdout);
+                putc((game->melon.y == i && game->melon.x == j) ? MELON : CELL, stdout);
             }
         }
         printf("\n");
