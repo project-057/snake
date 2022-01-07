@@ -64,8 +64,7 @@ void draw_field(GameState* game)
             else if (body_part < length)
                 putc(BODY, stdout);
             else {
-                // TODO: draw a melon
-                putc(CELL, stdout);
+                (game->melon.y == i && game->melon.x == j) ? putc(MELON, stdout) : putc(CELL, stdout);
             }
         }
         printf("\n");
