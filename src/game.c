@@ -49,22 +49,26 @@ void draw_field(GameState* game)
     };
     int length = game->snake.snake_len;
 
-    char** field = (char**)calloc(game->field_height, sizeof(char*));
-    char* field_data = (char*)calloc(game->field_width * game->field_height + game->field_height + 1, sizeof(char));
+    char** field = calloc(game->field_height, sizeof(char*));
+    char* field_data = calloc(game->field_width * game->field_height + game->field_height + 1, sizeof(char));
+
+    // fill the field_data with CELLs
+    for (int i = 0; i < game->field_height * game->field_width + game->field_height + 1; i++) {
+        field_data[i] = CELL;
+    }
 
     for (int i = 0; i < game->field_height; i++) {
         field[i] = field_data + i * (game->field_width + 1);
+        field_data[(i + 1) * (game->field_width) + i] = '\n'; // add '\n' for the correct drawing
     }
 
-    for (int i = 0; i < game->field_height * game->field_width + game->field_height + 1; i++) {
-        field_data[i] = i % game->field_width && i ? CELL : '\n';
-    }
-
+    // add snake to the field
     for (int i = 0; i < length; i++) {
         Coordinate body = game->snake.body[i];
         field[body.y][body.x] = i ? BODY : HEAD;
     }
 
+    // add melon to the field
     field[game->melon.y][game->melon.x] = MELON;
 
     puts(field_data);
