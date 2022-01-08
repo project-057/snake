@@ -161,12 +161,9 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate* stack_coords = (Coordinate*)calloc(game->field_height * game->field_width, sizeof(Coordinate));
-    if (!stack_coords) {
-        free(free_coordinates);
-        free(data);
-        return;
-    }
+    #define MAX_SIZE 300 
+
+    Coordinate stack_coords[MAX_SIZE];
 
     int stack_coords_size = 0;
 
@@ -183,7 +180,6 @@ void next_step(GameState* game)
     /* free */
     free(free_coordinates);
     free(data);
-    free(stack_coords);
 }
 
 void free_game(GameState* game)
