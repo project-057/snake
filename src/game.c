@@ -31,7 +31,8 @@ GameState setup_game()
 bool is_game_over(GameState* game)
 {
     int length = game->snake.snake_len;
-    for (int i = 1; i < length; i++) {
+    // The snake can't crash if length is less than 4
+    for (int i = 4; i < length; i++) {
         if (game->snake.body[0].x == game->snake.body[i].x && game->snake.body[0].y == game->snake.body[i].y)
             return true;
     }
@@ -109,13 +110,13 @@ void scan_user_key(GameState* game)
     const Coordinate down = { 0, 1 };
     const Coordinate up = { 0, -1 };
 
-    if (input_key == KEY_RIGHT || input_key == 'l')
+    if ((input_key == KEY_RIGHT || input_key == 'l') && oppositely_directed(game->snake.direction, right))
         game->snake.direction = right;
-    if (input_key == KEY_LEFT || input_key == 'h')
+    if ((input_key == KEY_LEFT || input_key == 'h') && oppositely_directed(game->snake.direction, left))
         game->snake.direction = left;
-    if (input_key == KEY_DOWN || input_key == 'j')
+    if ((input_key == KEY_DOWN || input_key == 'j') && oppositely_directed(game->snake.direction, down))
         game->snake.direction = down;
-    if (input_key == KEY_UP || input_key == 'k')
+    if ((input_key == KEY_UP || input_key == 'k') && oppositely_directed(game->snake.direction, up))
         game->snake.direction = up;
 }
 

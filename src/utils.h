@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #ifndef _WIN32
@@ -27,3 +28,5 @@ void init_rand();
 Coordinate get_random_coords(int width, int height);
 
 int get_random_integer(int from, int to);
+
+bool oppositely_directed(Coordinate snake, Coordinate direction);
