@@ -1,3 +1,9 @@
+# project binaries
 /snake
 /snake.exe
-/.idea
+
+# core dumps
+*.core
+
+# idea project settings
+.idea

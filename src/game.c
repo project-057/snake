@@ -16,14 +16,17 @@ GameState setup_game()
     scanf("%u", &game.field_width);
 
     /* Creating snake at random position */
-    game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width, sizeof(Coordinate));
+    game.snake.body = calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
-
     push_front_point(&game.snake, get_random_coords(game.field_width, game.field_height));
 
     /* Random direction */
     game.snake.direction.x = rand() % 2;
     game.snake.direction.y = !game.snake.direction.x;
+
+    do {
+        game.melon = get_random_coords(game.field_width, game.field_height);
+    } while (game.melon.x != game.snake.body[0].x && game.melon.y != game.snake.body[0].y);
 
     return game;
 }
