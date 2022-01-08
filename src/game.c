@@ -31,8 +31,7 @@ GameState setup_game()
 bool is_game_over(GameState* game)
 {
     int length = game->snake.snake_len;
-    /* The snake can't crash if length is less than 4 */
-    for (int i = 4; i < length; i++) {
+    for (int i = 1; i < length; i++) {
         if (game->snake.body[0].x == game->snake.body[i].x && game->snake.body[0].y == game->snake.body[i].y)
             return true;
     }
