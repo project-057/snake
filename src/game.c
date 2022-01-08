@@ -49,25 +49,32 @@ void draw_field(GameState* game)
     };
     int length = game->snake.snake_len;
 
-    for (int i = 0; i < game->field_height; i++) {
-        for (int j = 0; j < game->field_width; j++) {
-            int body_part = 0;
-            for (; body_part < length; body_part++) {
-                if (game->snake.body[body_part].y == i && game->snake.body[body_part].x == j) {
-                    break;
-                }
-            }
-            /* if body_part == length then we haven't drawn part of snake's body */
-            if (body_part == 0)
-                putc(HEAD, stdout);
-            else if (body_part < length)
-                putc(BODY, stdout);
-            else {
-                putc((game->melon.y == i && game->melon.x == j) ? MELON : CELL, stdout);
-            }
-        }
-        printf("\n");
+    char** field = calloc(game->field_height, sizeof(char*));
+    char* field_data = calloc(game->field_width * game->field_height + game->field_height + 1, sizeof(char));
+
+    // fill the field_data with CELLs
+    for (int i = 0; i < game->field_height * game->field_width + game->field_height + 1; i++) {
+        field_data[i] = CELL;
     }
+
+    for (int i = 0; i < game->field_height; i++) {
+        field[i] = field_data + i * (game->field_width + 1);
+        field_data[(i + 1) * (game->field_width) + i] = '\n'; // add '\n' for the correct drawing
+    }
+
+    // add snake to the field
+    for (int i = 0; i < length; i++) {
+        Coordinate body = game->snake.body[i];
+        field[body.y][body.x] = i ? BODY : HEAD;
+    }
+
+    // add melon to the field
+    field[game->melon.y][game->melon.x] = MELON;
+
+    puts(field_data);
+
+    free(field_data);
+    free(field);
 }
 
 #ifdef _WIN32
