@@ -184,13 +184,9 @@ void remove_back_point(Snake* snake)
 
 void push_front_point(Snake* snake, Coordinate point)
 {
-    snake->snake_len++;
-
-    for (unsigned i = snake->snake_len - 1; i >= 1; i--) {
-        snake->body[i].x = snake->body[i - 1].x;
-        snake->body[i].y = snake->body[i - 1].y;
+    for (int i = snake->snake_len++; i >= 1; i--) {
+        snake->body[i] = snake->body[i - 1];
     }
 
-    snake->body[0].x = point.x;
-    snake->body[0].y = point.y;
+    snake->body[0] = point;
 }
