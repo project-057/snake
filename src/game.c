@@ -161,7 +161,7 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    #define MAX_SIZE 300 
+#define MAX_SIZE 300
 
     Coordinate stack_coords[MAX_SIZE];
 
