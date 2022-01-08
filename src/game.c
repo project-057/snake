@@ -163,7 +163,7 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate stack_coords[MAX_SIZE];
+    Coordinate stack_coords[MAX_FIELD_SPACE_SIZE];
 
     int stack_coords_size = 0;
 
