@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_FIELD_SPACE_SIZE 300
+
 GameState setup_game()
 {
     GameState game;
@@ -16,7 +18,7 @@ GameState setup_game()
     scanf("%u", &game.field_width);
 
     /* fixing sizes for game bugs */
-    if (game.field_height == 0 || game.field_width == 0) {
+    if (game.field_height == 0 || game.field_width == 0 || game.field_height * game.field_width >= MAX_FIELD_SPACE_SIZE) {
         puts("Not valid sizes, setted default values 10x10");
         game.field_height = 10;
         game.field_width = 10;
@@ -160,8 +162,6 @@ void next_step(GameState* game)
     for (int i = 0; i < game->snake.snake_len; ++i) {
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
-
-#define MAX_SIZE 300
 
     Coordinate stack_coords[MAX_SIZE];
 
