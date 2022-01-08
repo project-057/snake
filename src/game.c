@@ -15,6 +15,13 @@ GameState setup_game()
     puts("Width: ");
     scanf("%u", &game.field_width);
 
+    /* fixing sizes for game bugs */
+    if (game.field_height == 0 && game.field_width == 0) {
+        puts("Not valid sizes, setted default values 10x10");
+        game.field_height = 10;
+        game.field_width = 10;
+    }
+
     /* Creating snake at random position */
     game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width,
         sizeof(Coordinate));
