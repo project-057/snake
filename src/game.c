@@ -16,7 +16,7 @@ GameState setup_game()
     scanf("%u", &game.field_width);
 
     /* fixing sizes for game bugs */
-    if (game.field_height == 0 && game.field_width == 0) {
+    if (game.field_height == 0 || game.field_width == 0) {
         puts("Not valid sizes, setted default values 10x10");
         game.field_height = 10;
         game.field_width = 10;
