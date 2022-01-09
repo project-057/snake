@@ -55,8 +55,8 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
-    enum field_components { 
-		CELL = '.',
+    enum field_components {
+        CELL = '.',
         HEAD = '*',
         BODY = '+',
         MELON = '0'
