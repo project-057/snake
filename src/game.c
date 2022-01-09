@@ -131,8 +131,8 @@ void next_step(GameState* game)
 {
     /* Moving */
     Coordinate next_move = {
-        .x = (game->snake.head->x + game->snake.direction.x) % game->field_width,
-        .y = (game->snake.head->y + game->snake.direction.y) % game->field_height,
+        .x = (game->snake.head->x + game->snake.direction.x + game->field_width) % game->field_width,
+        .y = (game->snake.head->y + game->snake.direction.y + game->field_height) % game->field_height
     };
     push_front_point(&game->snake, next_move);
 
