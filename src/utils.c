@@ -38,8 +38,3 @@ int get_random_integer(int from, int to)
 {
     return from + rand() % (to - from);
 }
-
-bool is_opposite_directed(Coordinate first_vector, Coordinate second_vector)
-{
-    return first_vector.x * second_vector.x + first_vector.y * second_vector.y >= 0;
-}

@@ -28,5 +28,3 @@ void init_rand();
 Coordinate get_random_coords(int width, int height);
 
 int get_random_integer(int from, int to);
-
-bool is_opposite_directed(Coordinate first_vector, Coordinate second_vector);

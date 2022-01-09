@@ -127,7 +127,7 @@ void scan_user_key(GameState* game)
     if (input_key == KEY_UP || input_key == 'k') {
         new_direction = up;
     }
-    if (is_opposite_directed(game->snake.direction, new_direction)) {
+    if (game->snake.direction.x * new_direction.x + game->snake.direction.y * new_direction.y) {
         game->snake.direction = new_direction;
     }
 }
