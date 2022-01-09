@@ -110,13 +110,13 @@ void scan_user_key(GameState* game)
     const Coordinate down = { 0, 1 };
     const Coordinate up = { 0, -1 };
 
-    if ((input_key == KEY_RIGHT || input_key == 'l') && oppositely_directed(game->snake.direction, right))
+    if ((input_key == KEY_RIGHT || input_key == 'l') && opposite_directed(game->snake.direction, right))
         game->snake.direction = right;
-    if ((input_key == KEY_LEFT || input_key == 'h') && oppositely_directed(game->snake.direction, left))
+    if ((input_key == KEY_LEFT || input_key == 'h') && opposite_directed(game->snake.direction, left))
         game->snake.direction = left;
-    if ((input_key == KEY_DOWN || input_key == 'j') && oppositely_directed(game->snake.direction, down))
+    if ((input_key == KEY_DOWN || input_key == 'j') && opposite_directed(game->snake.direction, down))
         game->snake.direction = down;
-    if ((input_key == KEY_UP || input_key == 'k') && oppositely_directed(game->snake.direction, up))
+    if ((input_key == KEY_UP || input_key == 'k') && opposite_directed(game->snake.direction, up))
         game->snake.direction = up;
 }
 
