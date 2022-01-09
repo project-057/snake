@@ -10,7 +10,8 @@ typedef struct {
     unsigned snake_len;
 } Snake;
 
-typedef struct {
+typedef struct
+{
     unsigned field_height;
     unsigned field_width;
     Snake snake;
