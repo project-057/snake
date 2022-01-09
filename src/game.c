@@ -5,29 +5,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_FIELD_SPACE_SIZE 300
+
 GameState setup_game()
 {
     GameState game;
 
-    /* getting field sizes from user */
-    puts("Enter field sizes:\nHeight: ");
+    puts("Enter field sizes:");
+    puts("Height:");
     scanf("%u", &game.field_height);
-    puts("Width: ");
+    puts("Width:");
     scanf("%u", &game.field_width);
 
-    /* Creating snake at random position */
+    if (game.field_height == 0 || game.field_width == 0 || game.field_height * game.field_width >= MAX_FIELD_SPACE_SIZE) {
+        puts("Not valid sizes, set values to default 10x10.");
+        game.field_height = 10;
+        game.field_width = 10;
+    }
+
+    /* Generate snake head at random position */
     game.snake.body = calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
+
     push_front_point(&game.snake, get_random_coords(game.field_width, game.field_height));
     game.snake.head = &game.snake.body[0];
 
-    /* Random direction */
+    /* Generate random direction */
     game.snake.direction.x = rand() % 2;
     game.snake.direction.y = !game.snake.direction.x;
 
     do {
         game.melon = get_random_coords(game.field_width, game.field_height);
-    } while (game.melon.x != game.snake.body[0].x && game.melon.y != game.snake.body[0].y);
+    } while (game.melon.x != game.snake.head->x && game.melon.y != game.snake.head->y);
 
     return game;
 }
@@ -167,7 +176,8 @@ void next_step(GameState* game)
         free_coordinates[game->snake.body[i].y][game->snake.body[i].x] = false;
     }
 
-    Coordinate* stack_coords = malloc(game->field_height * game->field_width * sizeof(Coordinate));
+    Coordinate stack_coords[MAX_FIELD_SPACE_SIZE];
+
     int stack_coords_size = 0;
 
     for (int i = 0; i < game->field_height; ++i) {
@@ -183,7 +193,6 @@ void next_step(GameState* game)
     /* free */
     free(free_coordinates);
     free(data);
-    free(stack_coords);
 }
 
 void free_game(GameState* game)
@@ -193,8 +202,14 @@ void free_game(GameState* game)
 
 void remove_back_point(Snake* snake)
 {
+    snake->snake_len--;
 }
 
 void push_front_point(Snake* snake, Coordinate point)
 {
+    for (int i = snake->snake_len++; i >= 1; i--) {
+        snake->body[i] = snake->body[i - 1];
+    }
+
+    snake->body[0] = point;
 }
