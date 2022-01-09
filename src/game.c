@@ -25,15 +25,19 @@ GameState setup_game()
     }
 
     /* Creating snake at random position */
-    game.snake.body = (Coordinate*)calloc(game.field_height * game.field_width,
-        sizeof(Coordinate));
+    game.snake.body = calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
     push_front_point(&game.snake, get_random_coords(game.field_width, game.field_height));
+    game.snake.head = &game.snake.body[0];
 
     /* Random direction */
     game.snake.direction.x = rand() % 2;
     game.snake.direction.y = !game.snake.direction.x;
+
+    do {
+        game.melon = get_random_coords(game.field_width, game.field_height);
+    } while (game.melon.x != game.snake.body[0].x && game.melon.y != game.snake.body[0].y);
 
     return game;
 }
@@ -43,7 +47,7 @@ bool is_game_over(GameState* game)
     int length = game->snake.snake_len;
     /* The snake can't crash if length is less than 4 */
     for (int i = 4; i < length; i++) {
-        if (game->snake.body[0].x == game->snake.body[i].x && game->snake.body[0].y == game->snake.body[i].y)
+        if (game->snake.head->x == game->snake.body[i].x && game->snake.head->y == game->snake.body[i].y)
             return true;
     }
     return false;
@@ -51,7 +55,8 @@ bool is_game_over(GameState* game)
 
 void draw_field(GameState* game)
 {
-    enum field_components { CELL = '.',
+    enum field_components { 
+		CELL = '.',
         HEAD = '*',
         BODY = '+',
         MELON = '0'
@@ -133,13 +138,14 @@ void scan_user_key(GameState* game)
 void next_step(GameState* game)
 {
     /* Moving */
-    Coordinate head = game->snake.body[0];
-    head.x = (head.x + game->snake.direction.x) % game->field_width;
-    head.y = (head.y + game->snake.direction.y) % game->field_height;
-    push_front_point(&game->snake, head);
+    Coordinate next_move = {
+        .x = (game->snake.head->x + game->snake.direction.x) % game->field_width,
+        .y = (game->snake.head->y + game->snake.direction.y) % game->field_height,
+    };
+    push_front_point(&game->snake, next_move);
 
     /* Melon check */
-    if (head.x != game->melon.x || head.y != game->melon.y) {
+    if (next_move.x != game->melon.x || next_move.y != game->melon.y) {
         remove_back_point(&game->snake);
         return;
     }
