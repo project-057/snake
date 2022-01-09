@@ -6,6 +6,7 @@ typedef struct {
     /* Direction vector {x, y}, where x and y 1 or 0; */
     Coordinate direction;
     Coordinate* body;
+    Coordinate* head;
     unsigned snake_len;
 } Snake;
 
