@@ -39,7 +39,7 @@ int get_random_integer(int from, int to)
     return from + rand() % (to - from);
 }
 
-bool opposite_directed(Coordinate snake, Coordinate direction)
+bool opposite_directed(Coordinate first_vector, Coordinate second_vector)
 {
-    return (snake.x * direction.x + snake.y * direction.y >= 0);
+    return (first_vector.x * second_vector.x + first_vector.y * second_vector.y >= 0);
 }

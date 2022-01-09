@@ -29,4 +29,4 @@ Coordinate get_random_coords(int width, int height);
 
 int get_random_integer(int from, int to);
 
-bool opposite_directed(Coordinate snake, Coordinate direction);
+bool opposite_directed(Coordinate first_vector, Coordinate second_vector);
