@@ -1,5 +1,5 @@
 FROM alpine:3.14
-RUN apk add --no-cache make musl-dev clang-extra-tools
+RUN apk add --no-cache make musl-dev clang-extra-tools 
 
 COPY . /srv/snake
 WORKDIR /srv/snake
