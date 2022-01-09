@@ -11,33 +11,32 @@ GameState setup_game()
 {
     GameState game;
 
-    /* getting field sizes from user */
-    puts("Enter field sizes:\nHeight: ");
+    puts("Enter field sizes:");
+    puts("Height:");
     scanf("%u", &game.field_height);
-    puts("Width: ");
+    puts("Width:");
     scanf("%u", &game.field_width);
 
-    /* fixing sizes for game bugs */
     if (game.field_height == 0 || game.field_width == 0 || game.field_height * game.field_width >= MAX_FIELD_SPACE_SIZE) {
-        puts("Not valid sizes, setted default values 10x10");
+        puts("Not valid sizes, set values to default 10x10.");
         game.field_height = 10;
         game.field_width = 10;
     }
 
-    /* Creating snake at random position */
+    /* Generate snake head at random position */
     game.snake.body = calloc(game.field_height * game.field_width, sizeof(Coordinate));
     game.snake.snake_len = 0;
 
     push_front_point(&game.snake, get_random_coords(game.field_width, game.field_height));
     game.snake.head = &game.snake.body[0];
 
-    /* Random direction */
+    /* Generate random direction */
     game.snake.direction.x = rand() % 2;
     game.snake.direction.y = !game.snake.direction.x;
 
     do {
         game.melon = get_random_coords(game.field_width, game.field_height);
-    } while (game.melon.x != game.snake.body[0].x && game.melon.y != game.snake.body[0].y);
+    } while (game.melon.x != game.snake.head->x && game.melon.y != game.snake.head->y);
 
     return game;
 }
