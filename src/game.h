@@ -1,7 +1,6 @@
 #pragma once
 
 #include "utils.h"
-#include <stdbool.h>
 
 typedef struct {
     /* Direction vector {x, y}, where x and y 1 or 0; */
