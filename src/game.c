@@ -1,6 +1,7 @@
 #include "game.h"
 #include "utils.h"
 
+#include <curses.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +10,13 @@
 
 GameState setup_game()
 {
+    initscr();
+    cbreak();
+    noecho();
+    intrflush(stdscr, FALSE);
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
+
     GameState game;
 
     puts("Enter field sizes:");
@@ -63,10 +71,10 @@ void draw_field(GameState* game)
     int length = game->snake.snake_len;
 
     char** field = calloc(game->field_height, sizeof(char*));
-    char* field_data = calloc(game->field_width * game->field_height + game->field_height + 1, sizeof(char));
+    char* field_data = calloc(game->field_width * game->field_height + game->field_height, sizeof(char));
 
     // fill the field_data with CELLs
-    for (int i = 0; i < game->field_height * game->field_width + game->field_height + 1; i++) {
+    for (int i = 0; i < game->field_height * game->field_width + game->field_height; i++) {
         field_data[i] = CELL;
     }
 
@@ -84,39 +92,16 @@ void draw_field(GameState* game)
     // add melon to the field
     field[game->melon.y][game->melon.x] = MELON;
 
-    puts(field_data);
+    clear();
+    printw(field_data);
 
     free(field_data);
     free(field);
 }
 
-#ifdef _WIN32
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define ARROW_PRESSED 0
-#else
-#define KEY_LEFT 68
-#define KEY_RIGHT 67
-#define KEY_UP 65
-#define KEY_DOWN 66
-#define ARROW_PRESSED 27
-#define TERMIOS_ARROW_KEY_PRESSED 91
-#endif
-
 void scan_user_key(GameState* game)
 {
     int input_key = getch();
-
-    /* When user press arrow key getch() returns 0 */
-    if (input_key == ARROW_PRESSED) {
-        input_key = getch();
-#ifndef _WIN32
-        if (input_key == TERMIOS_ARROW_KEY_PRESSED)
-            input_key = getch();
-#endif
-    }
 
     const Coordinate right = { 1, 0 };
     const Coordinate left = { -1, 0 };

@@ -3,7 +3,7 @@ RM=rm -f
 CLANG-FORMAT=clang-format12
 CLANG-TIDY=clang-tidy12
 
-LIBS=-lm
+LIBS=-lm -lncurses
 CFLAGS=-Wall -Werror -std=c99 -O2 ${LIBS}
 SRC=src/snake.c src/game.c src/utils.c
 DEPS=${SRC} src/utils.h src/game.h
