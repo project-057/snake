@@ -10,11 +10,12 @@ int main(int argc, char* argv[])
 
     GameState game = setup_game();
 
+    draw_field(&game);
     while (!is_game_over(&game)) {
-        draw_field(&game);
+        sleep(1);
         scan_user_key(&game);
         next_step(&game);
-        sleep(1);
+        draw_field(&game);
         /* usleep((unsigned)300000); */
     }
 
