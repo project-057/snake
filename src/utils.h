@@ -2,6 +2,8 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
 
 #ifndef _WIN32
 
@@ -28,3 +30,5 @@ void init_rand();
 Coordinate get_random_coords(int width, int height);
 
 int get_random_integer(int from, int to);
+
+void msleep(int tms);
